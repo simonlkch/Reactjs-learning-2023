@@ -1,22 +1,5 @@
-import { useState } from "react"
-
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]
-]
-
 // Lifting State up, pass by function
-export default function GameBoard({ onSelectSquare, turns }) {
-  let gameBoard = initialGameBoard;
-
-  // for, use of, not in
-  for (const turn of turns) {
-    // use {}, not []
-    const { square, player } = turn;
-    const { row, col } = square;
-    gameBoard[row][col] = player;
-  }
+export default function GameBoard({ onSelectSquare, board }) {
   return (
     <ol id="game-board">
 
@@ -28,7 +11,7 @@ export default function GameBoard({ onSelectSquare, turns }) {
         </ol>
       </li> */}
 
-      {gameBoard.map((row, rowIndex) => <li key={rowIndex}>
+      {board.map((row, rowIndex) => <li key={rowIndex}>
         <ol>
           {row.map((playerSymbol, colIndex) =>
             <li key={colIndex}>
