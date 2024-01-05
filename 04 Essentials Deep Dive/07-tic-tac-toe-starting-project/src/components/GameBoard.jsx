@@ -1,29 +1,5 @@
-import { useState } from "react"
-
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]
-]
-
 // Lifting State up, pass by function
-export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard)
-
-  const handleSelectSquare = (rowIndex, colIndex) => {
-    // try to copy the gameboard, not reference the existing gameboard
-    console.log(`Click: x:${rowIndex} y:${colIndex}`)
-    setGameBoard((prevGameBoard) => {
-      // clone array
-      const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])]
-      // console.log(updatedBoard)
-      updatedBoard[rowIndex][colIndex] = activePlayerSymbol
-      return updatedBoard
-    })
-    onSelectSquare()
-  }
-
-
+export default function GameBoard({ onSelectSquare, board }) {
   return (
     <ol id="game-board">
 
@@ -35,12 +11,12 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
         </ol>
       </li> */}
 
-      {gameBoard.map((row, rowIndex) => <li key={rowIndex}>
+      {board.map((row, rowIndex) => <li key={rowIndex}>
         <ol>
-          {row.map((col, colIndex) =>
+          {row.map((playerSymbol, colIndex) =>
             <li key={colIndex}>
-              <button onClick={() => handleSelectSquare(rowIndex, colIndex)}>
-                {col}
+              <button onClick={() => onSelectSquare(rowIndex, colIndex)} disabled={playerSymbol!==null}>
+                {playerSymbol}
               </button>
             </li>
           )}
