@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header>
       <img src={logo} alt="A canvas" />
-      <h1>ReactArt</h1>
+      <h1 className="flex-auto">ReactArt</h1>
       <p className={classes.paragraph}>AAAAA community of artists and art-lovers.</p>
     </header>
   );

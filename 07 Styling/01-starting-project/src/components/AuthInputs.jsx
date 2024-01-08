@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Input from './Input.jsx'
+import Button from './Button.jsx'
 
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -23,30 +25,19 @@ export default function AuthInputs() {
   return (
     <div id="auth-inputs">
       <div className="controls">
-        <p>
-          <label>Email</label>
-          <input
-            type="email"
-            className={emailNotValid ? 'invalid' : undefined}
-            onChange={(event) => handleInputChange('email', event.target.value)}
-          />
-        </p>
-        <p>
-          <label>Password</label>
-          <input
-            type="password"
-            className={passwordNotValid ? 'invalid' : undefined}
-            onChange={(event) =>
-              handleInputChange('password', event.target.value)
-            }
-          />
-        </p>
+        <Input label="Email"
+          invalid={emailNotValid ? 'invalid' : undefined}
+          onChange={(event) => handleInputChange('email', event.target.value)} />
+        <Input label="Password"
+          invalid={passwordNotValid ? 'invalid' : undefined}
+          onChange={(event) => handleInputChange('password', event.target.value)} />
+
       </div>
       <div className="actions">
-        <button type="button" className="text-button">
+        <Button type="button" className="text-button">
           Create a new account
-        </button>
-        <button className='button' onClick={handleLogin}>Sign In</button>
+        </Button>
+        <Button className='button' onClick={handleLogin}>Sign In</Button>
       </div>
     </div>
   );
