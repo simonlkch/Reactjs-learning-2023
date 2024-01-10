@@ -11,14 +11,14 @@ const ResultModel = forwardRef(function ({ result, targetTime }, ref) {
   })
 
   return (
-    <div ref={dialog} className="result-modal">
+    <dialog ref={dialog} className="result-modal">
       <h2>You {result}</h2>
       <p>The target is {targetTime} second(s)</p>
       <p>You stop the timer with x second(s) left</p>
       <form method="dialog">
         <button>Close</button>
       </form>
-    </div>
+    </dialog>
   )
 })
 
