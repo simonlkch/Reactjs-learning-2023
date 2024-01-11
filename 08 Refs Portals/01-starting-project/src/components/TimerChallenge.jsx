@@ -7,11 +7,10 @@ export default function TimerChallenge({ title, targetTime }) {
 
   const timer = useRef()
   const dialog = useRef()
-  let result
 
   if ( remainingTime <= 0){
     clearInterval(timer.current)
-    setRemainingTime(targetTime * 1000)
+    
     dialog.current.show()
   }
 
@@ -27,9 +26,16 @@ export default function TimerChallenge({ title, targetTime }) {
     clearInterval(timer.current)
   }
 
+  const handleReset = () => {
+    // need to pass function to ResultModel, if reset time in here,
+    // the finally step will reset the time and pass to ResultModel
+    // do that the ResultModel get the targetTime, not the RemainingTime
+    setRemainingTime(targetTime * 1000)
+  }
+
   return (
     <>
-      {<ResultModel ref={dialog} result={result} targetTime={targetTime}/>}
+      {<ResultModel ref={dialog} targetTime={targetTime} remainingTime={remainingTime} handleReset={handleReset}/>}
       <section className="challenge">
         <h2>{title}</h2>
         {/* {timeExpired && <p>You lost!</p>} */}
