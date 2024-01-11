@@ -1,6 +1,7 @@
 import { useState, useRef } from "react"
 import ResultModel from "../components/ResultModel.jsx"
 
+
 export default function TimerChallenge({ title, targetTime }) {
   const [remainingTime, setRemainingTime] = useState(targetTime * 1000)
   const isTimerActive = remainingTime > 0 && remainingTime < targetTime * 1000
