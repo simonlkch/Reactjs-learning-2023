@@ -10,7 +10,6 @@ export default function NewTask({ onAdd }) {
     if (enteredTask === undefined || enteredTask==='')
       return
     onAdd(enteredTask)
-    console.log('hit')
     setEnteredTask('')
   }
 
