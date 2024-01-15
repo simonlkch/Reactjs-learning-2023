@@ -1,8 +1,12 @@
 import React from "react"
-import { useState } from "react"
 
 
-export default function ProjectsSideBar({onStartAddProject, projects}) {
+export default function ProjectsSideBar({
+  onStartAddProject,
+  projects,
+  onSelectProject,
+  selectedProjectId
+}) {
   return (
     <aside className="w-1/3 px-8 py-8 bg-stone-700 text-stone-50 md:w-72 rounded-r-xl">
       <h2 className=" mb-8 font-bold uppercase md:text-xl text-stone-200">Your Projects</h2>
@@ -13,10 +17,22 @@ export default function ProjectsSideBar({onStartAddProject, projects}) {
       </div>
       <menu>
         <ul className=" ml-8 my-2 ">
-          {projects.map((project)=>
-            <li key={project.id} className="normal-case">
-              <button className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 bg-stone-600 first-letter:uppercase">{project.title}</button>
-            </li>
+          {projects.map((project) => {
+            let cssClass = "w-full text-left px-2 py-1 rounded-sm my-1 first-letter:uppercase"
+            
+            if (project.id === selectedProjectId) {
+              cssClass += " bg-stone-800 text-stone-200"
+            }else{
+              cssClass += " text-stone-400"
+            }
+
+
+            return (
+              <li key={project.id} className="normal-case">
+                <button className={cssClass} onClick={()=> onSelectProject(project.id)}>{project.title}</button>
+              </li>
+            )
+          }
           )}
         </ul>
       </menu>
